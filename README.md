@@ -5,7 +5,7 @@ Um jogo educacional interativo que implementa o problema clássico do **0/1 Knap
 
 ## 🎮 Funcionalidades
 
-### Versão Atual (1.0)
+### Versão Anterior (1.0)
 - ✅ Interface gráfica interativa com Pygame
 - ✅ Seleção manual de itens pelo jogador
 - ✅ Resolução automática usando Programação Dinâmica
@@ -14,6 +14,13 @@ Um jogo educacional interativo que implementa o problema clássico do **0/1 Knap
 - ✅ Feedback educacional sobre eficiência
 - ✅ 10 itens predefinidos com diferentes pesos e valores
 - ✅ Mochila com capacidade de 15kg
+
+### Versão Atual (2.0)
+- ✅ Visualização animada da construção da tabela DP
+- ✅ Modo de demonstração passo-a-passo
+- ✅ Explicações em texto do algoritmo durante execução
+- ✅ Histórico de tentativas do jogador
+- ✅ Sistema de pontuação e ranking
 
 ## 🚀 Como Executar
 
