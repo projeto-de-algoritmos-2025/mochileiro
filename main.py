@@ -8,7 +8,7 @@ pygame.init()
 
 # Constantes
 WINDOW_WIDTH = 1200
-WINDOW_HEIGHT = 1000
+WINDOW_HEIGHT = 730
 BACKGROUND_COLOR = (245, 245, 245)
 BUTTON_COLOR = (70, 130, 180)
 BUTTON_HOVER_COLOR = (100, 149, 237)
@@ -264,8 +264,8 @@ class KnapsackGame:
         if not self.dp_table:
             return
         
-        start_x = 650
-        start_y = 320
+        start_x = 550
+        start_y = 200
         cell_width = 35
         cell_height = 25
         
@@ -334,7 +334,7 @@ class KnapsackGame:
             self.draw_dp_table()
         if self.show_solution:
             self.draw_dp_table()
-            solution_y = 700
+            solution_y = 510
             self.draw_text("Solução Ótima (Programação Dinâmica):", font_medium, HEADER_COLOR, 450, solution_y)
             self.draw_text(f"Valor ótimo: R$ {self.optimal_value}", font_small, SUCCESS_COLOR, 450, solution_y + 25)
             self.draw_text(f"Peso ótimo: {self.optimal_weight} kg", font_small, SUCCESS_COLOR, 450, solution_y + 45)
@@ -342,27 +342,29 @@ class KnapsackGame:
             for i, item in enumerate(self.optimal_items):
                 self.draw_text(f"• {item.name} (Peso: {item.weight}kg, Valor: R${item.value})",
                                font_small, TEXT_COLOR, 450, solution_y + 90 + i * 20)
-            comparison_y = solution_y + 90 + len(self.optimal_items) * 20 + 30
-            self.draw_text("Comparação:", font_medium, HEADER_COLOR, 450, comparison_y)
+            comparsion_x = 800
+            solution_y = 282
+            comparison_y = solution_y + 90 + len(self.optimal_items) * 20
+            self.draw_text("Comparação:", font_medium, HEADER_COLOR, comparsion_x, comparison_y)
             self.draw_text(f"Sua solução: R$ {self.current_value} ({self.current_weight} kg)",
-                           font_small, TEXT_COLOR, 450, comparison_y + 25)
+                           font_small, TEXT_COLOR, comparsion_x, comparison_y + 25)
             self.draw_text(f"Solução ótima: R$ {self.optimal_value} ({self.optimal_weight} kg)",
-                           font_small, SUCCESS_COLOR, 450, comparison_y + 45)
+                           font_small, SUCCESS_COLOR, comparsion_x, comparison_y + 45)
             if self.current_value == self.optimal_value:
                 self.draw_text("Parabéns! Você encontrou a solução ótima!",
-                               font_small, SUCCESS_COLOR, 450, comparison_y + 70)
+                               font_small, SUCCESS_COLOR, comparsion_x, comparison_y + 70)
             else:
                 efficiency = (self.current_value / self.optimal_value * 100) if self.optimal_value > 0 else 0
                 self.draw_text(f"Eficiência: {efficiency:.1f}% da solução ótima",
-                               font_small, TEXT_COLOR, 450, comparison_y + 70)
-        self.draw_text("Histórico de Tentativas:", font_medium, HEADER_COLOR, 900, 20)
+                               font_small, TEXT_COLOR, comparsion_x, comparison_y + 70)
+        self.draw_text("Histórico de Tentativas:", font_medium, HEADER_COLOR, 600, 20)
         for i, tentativa in enumerate(reversed(self.history[-5:])):
             txt = f"{i+1}. Valor: R${tentativa['valor']} | Peso: {tentativa['peso']} | Itens: {', '.join(tentativa['itens'])}"
-            self.draw_text(txt, font_small, TEXT_COLOR, 900, 50 + i * 22)
-        self.draw_text("Ranking (Top 5):", font_medium, HEADER_COLOR, 900, 180)
+            self.draw_text(txt, font_small, TEXT_COLOR, 600, 50 + i * 22)
+        self.draw_text("Ranking (Top 5):", font_medium, HEADER_COLOR, 460, 20)
         for i, entry in enumerate(self.ranking):
             txt = f"{i+1}. {entry['nome']} - R${entry['valor']}"
-            self.draw_text(txt, font_small, TEXT_COLOR, 900, 210 + i * 22)
+            self.draw_text(txt, font_small, TEXT_COLOR, 460, 50 + i * 22)
         pygame.display.flip()
     
     def run(self):
