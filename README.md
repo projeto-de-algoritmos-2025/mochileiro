@@ -3,7 +3,17 @@
 ## 📋 Descrição
 Um jogo educacional interativo que implementa o problema clássico do **0/1 Knapsack** usando **Programação Dinâmica**. O jogador deve selecionar itens para maximizar o valor total respeitando o limite de peso da mochila, comparando sua solução com a solução ótima calculada pelo algoritmo.
 
-## 🎮 Funcionalidades
+## 👥 Alunos
+| Matrícula | Nome |
+|----------|------|
+| 222006641 | Davi de Aguiar Vieira |
+| 222006801 | Henrique Carvalho Neves |
+
+## 📝 Entregas
+| Programação Dinâmica |
+|----------|
+| [Apresentação](https://www.youtube.com/watch?v=Q5gyoOPqcGo)
+---
 
 ### Versão Anterior (1.0)
 - ✅ Interface gráfica interativa com Pygame
