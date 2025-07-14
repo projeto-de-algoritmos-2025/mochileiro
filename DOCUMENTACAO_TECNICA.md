@@ -2,6 +2,7 @@
 
 ## Arquitetura do Sistema
 
+
 ### Estrutura Principal (`main.py`)
 
 #### Classes Principais
@@ -12,12 +13,12 @@
 
 **2. `KnapsackGame`**
 - Classe principal que gerencia todo o jogo
-- Controla interface, lógica e algoritmos
+- Controla interface, lógica, algoritmos e animações
 
 #### Métodos Principais
 
 **Inicialização:**
-- `__init__()` - Configura pygame, itens e botões
+- `__init__()` - Configura pygame, itens, botões, histórico e ranking
 - `create_buttons()` - Cria elementos da interface
 
 **Interação:**
@@ -27,6 +28,8 @@
 
 **Algoritmo:**
 - `solve_knapsack()` - Implementa DP para solução ótima
+- `start_demo_mode()` - Inicia modo demonstração passo-a-passo
+- `demo_next_step()` - Executa próximo passo animado do DP
 - Constrói tabela DP iterativamente
 - Reconstrói solução através de backtracking
 
@@ -34,7 +37,12 @@
 - `draw()` - Renderiza toda a interface
 - `draw_text()` - Renderiza texto
 - `draw_button()` - Renderiza botões
-- `draw_dp_table()` - Renderiza tabela de DP
+- `draw_dp_table()` - Renderiza tabela de DP (agora animada no modo demonstração)
+
+**Histórico e Ranking:**
+- `add_to_history()` - Adiciona tentativa ao histórico
+- `update_ranking()` - Atualiza ranking das melhores pontuações
+
 
 #### Algoritmo de Programação Dinâmica
 
@@ -43,14 +51,15 @@
 for i in range(1, n + 1):
     for weight in range(1, max_weight + 1):
         item = items[i - 1]
-        
         if item.weight <= weight:
             include_value = item.value + dp[i-1][weight - item.weight]
             exclude_value = dp[i-1][weight]
             dp[i][weight] = max(include_value, exclude_value)
         else:
             dp[i][weight] = dp[i-1][weight]
+        # No modo demonstração, cada célula é preenchida animadamente e explicada
 ```
+
 
 #### Reconstrução da Solução
 
@@ -64,6 +73,7 @@ for i in range(n, 0, -1):
         weight -= items[i-1].weight
 ```
 
+
 ## Estrutura da Interface
 
 ### Layout da Tela (1200x800)
@@ -72,13 +82,16 @@ for i in range(n, 0, -1):
 - Título e informações da mochila
 - Lista de itens com botões
 - Status atual (peso/valor)
-- Botões de ação (Resolver DP, Reset)
+- Botões de ação (Resolver DP, Reset, Demonstração Passo-a-Passo, Próximo Passo)
 
 **Área Direita (450-1200px):**
-- Tabela de Programação Dinâmica
+- Tabela de Programação Dinâmica (agora animada no modo demonstração)
 - Solução ótima calculada
 - Comparação de resultados
-- Análise de eficiência
+- Explicações do algoritmo
+- Histórico de tentativas
+- Ranking de pontuações
+
 
 ### Cores e Estilo
 
@@ -90,12 +103,13 @@ ERROR_COLOR = (220, 20, 60)           # Vermelho
 HEADER_COLOR = (25, 25, 112)          # Azul escuro
 ```
 
+
 ## Fluxo de Execução
 
 1. **Inicialização**
    - Pygame setup
    - Criação de itens predefinidos
-   - Setup da interface
+   - Setup da interface, histórico e ranking
 
 2. **Loop Principal**
    - Captura eventos (cliques, teclas)
@@ -108,6 +122,15 @@ HEADER_COLOR = (25, 25, 112)          # Azul escuro
    - Calcula valor ótimo
    - Reconstrói solução
    - Exibe resultados
+
+4. **Demonstração Passo-a-Passo**
+   - Preenche a tabela DP célula a célula
+   - Mostra explicações do algoritmo em cada passo
+   - Permite avançar manualmente cada etapa
+
+5. **Histórico e Ranking**
+   - Cada tentativa é salva no histórico
+   - Ranking é atualizado automaticamente
 
 ## Performance e Complexidade
 
@@ -127,6 +150,7 @@ HEADER_COLOR = (25, 25, 112)          # Azul escuro
 - Estruturas de dados simples
 - Algoritmo DP clássico (não otimizado em espaço)
 
+
 ## Extensibilidade
 
 ### Adicionando Novos Itens
@@ -145,30 +169,40 @@ self.max_weight = nova_capacidade
 - Ajustar posições em `draw()` e `create_buttons()`
 - Alterar fontes e tamanhos
 
+
 ## Testes e Validação
+
 
 ### Casos de Teste Implementados
 - Solução ótima conhecida: R$ 2.150
 - Verificação de peso máximo
 - Validação da tabela DP
 - Comparação com algoritmo guloso
+- Teste do modo demonstração (animação e explicação)
+- Teste do histórico e ranking
+
 
 ### Debugging
 - Mensagens de erro para peso excedido
 - Verificação de cliques válidos
 - Validação de estado do jogo
+- Verificação visual da animação DP
+
 
 ## Dependências
+
 
 ### Pygame 2.5.2
 - Renderização gráfica
 - Gerenciamento de eventos
 - Loop de jogo
 
+
 ### Python 3.6+
 - Type hints
 - F-strings
 - Métodos de lista modernos
+
 
 ## Arquivos de Configuração
 

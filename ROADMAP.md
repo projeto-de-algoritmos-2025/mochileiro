@@ -3,11 +3,11 @@
 ## Funcionalidades Adicionais (Versões Futuras)
 
 ### Versão 2.0 - Expansões Educacionais
-- [ ] Visualização animada da construção da tabela DP
-- [ ] Modo de demonstração passo-a-passo
-- [ ] Explicações em texto do algoritmo durante execução
-- [ ] Histórico de tentativas do jogador
-- [ ] Sistema de pontuação e ranking
+- [x] Visualização animada da construção da tabela DP
+- [x] Modo de demonstração passo-a-passo
+- [x] Explicações em texto do algoritmo durante execução
+- [x] Histórico de tentativas do jogador
+- [x] Sistema de pontuação e ranking
 
 ### Versão 3.0 - Algoritmos Alternativos
 - [ ] Implementação da força bruta para comparação
